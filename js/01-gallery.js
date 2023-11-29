@@ -1,4 +1,71 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
+// const gallery = document.querySelector(".gallery");
+// const groupOfLiImages = document.createDocumentFragment();
+
+// const showImg = (img) =>{
+//   if (img.target.nodeName != "IMG"){
+//     return;
+//   }
+// }
+//  const imgToShow = basicLightBox.create (
+//   `<img src= "${img.target.dataset.source}"> `
+//  );
+
+//  imgToShow.show(() => {
+//   const closeWithEscape = (img) =>{
+//     if (img.key == "Escape")
+//     imgToShow.close (() =>{
+//   document.removeEventListener("keydown", closeWithEscape);
+//     })
+//   };
+//   document.addEventListener("keydown", closeWithEscape);
+//    });
+// }
+
+const gallery = document.querySelector(".gallery");
+const groupOfLiImages = document.createDocumentFragment();
+
+const showImg = (img) => {
+  if (img.target.nodeName != "IMG") {
+    return;
+  }
+  const imgToShow = basicLightbox.create(
+    `<img src= "${img.target.dataset.source}">`
+  );
+
+  imgToShow.show(() => {
+    const closeWithEscape = (img) => {
+      if (img.key == "Escape")
+        imgToShow.close(() => {
+          document.removeEventListener("keydown", closeWithEscape);
+        });
+    };
+    document.addEventListener("keydown", closeWithEscape);
+  });
+};
+
+galleryItems.forEach((img) => {
+  const liElement = document.createElement("li");
+  const imgElement = document.createElement("img");
+  const linkElement = document.createElement("a");
+
+  imgElement.src = img.preview;
+  linkElement.href = img.original;
+  imgElement.alt = img.description;
+  imgElement.dataset.source = img.original;
+
+  linkElement.append(imgElement);
+  liElement.append(linkElement);
+  groupOfLiImages.append(liElement);
+
+  liElement.classList.add("galleryitem");
+  linkElement.classList.add("gallerylink");
+  linkElement.addEventListener("click", (evt) => evt.preventDefault());
+  imgElement.classList.add("gallery__image");
+});
+
 console.log(galleryItems);
+gallery.append(groupOfLiImages);
+gallery.addEventListener("click", showImg);
