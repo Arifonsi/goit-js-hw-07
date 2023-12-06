@@ -1,29 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-// const gallery = document.querySelector(".gallery");
-// const groupOfLiImages = document.createDocumentFragment();
-
-// const showImg = (img) =>{
-//   if (img.target.nodeName != "IMG"){
-//     return;
-//   }
-// }
-//  const imgToShow = basicLightBox.create (
-//   `<img src= "${img.target.dataset.source}"> `
-//  );
-
-//  imgToShow.show(() => {
-//   const closeWithEscape = (img) =>{
-//     if (img.key == "Escape")
-//     imgToShow.close (() =>{
-//   document.removeEventListener("keydown", closeWithEscape);
-//     })
-//   };
-//   document.addEventListener("keydown", closeWithEscape);
-//    });
-// }
-
 const gallery = document.querySelector(".gallery");
 const groupOfLiImages = document.createDocumentFragment();
 
